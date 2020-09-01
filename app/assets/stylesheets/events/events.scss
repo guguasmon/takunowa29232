@@ -1,0 +1,29 @@
+$main-color: #f8bd7f;
+$side-color: #00416d;
+$header-color: #f5f1da;
+$footer-color: #e3dfc8;
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  margin-top: 48px;
+  display: flex;
+}
+
+.main {
+  background-color: $main-color;
+  width: calc(100% - 230px);
+  .main-body {
+    width: 100%;
+    max-width: 1064px;
+    min-height: 80%;
+    padding: 48px 28px;
+    margin: 0 auto;
+  }
+}
+
+.footer {
+  background-color: $footer-color;
+  width: 100%;
+  height: 48px;
+}

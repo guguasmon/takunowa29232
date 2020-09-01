@@ -1,0 +1,54 @@
+header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: #f5f1da;
+  width: 100%;
+  height: 48px;
+  padding: 10px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header .logo a {
+  font-size: 16px;
+  color: brown;
+  text-decoration: none;
+}
+
+header .lists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+header .lists .list a {
+  display: block;
+  padding: 0 24px;
+  border: 1px solid #a4922c;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  color: brown;
+  text-decoration: none;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+header .lists .list a:hover {
+  opacity: 0.8;
+  -webkit-box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
+}
+/*# sourceMappingURL=header.css.map */
