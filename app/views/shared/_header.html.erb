@@ -10,7 +10,7 @@
       <li class="list"><%= link_to 'ログアウト', logout_path %></li>
       <li class="list"><%= link_to 'マイページ', "#", class: "my-page" %></li>
       <% else %>
-        <li class="list"><a href="/auth/twitter">ログイン</a></li>
+      <li class="list"><%= link_to 'ログイン', "/auth/twitter" %></li>
       <% end %>
     </ul>
   </div>

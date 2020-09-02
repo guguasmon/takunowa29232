@@ -33,6 +33,10 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
+  def failure
+    redirect_to root_url, alert: "Authentication failed."
+  end
+
   private
   # 渡されたユーザーでログインする
   def log_in(user)
