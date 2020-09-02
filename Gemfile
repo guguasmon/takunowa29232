@@ -64,3 +64,6 @@ group :production do
 end
 
 gem 'pry-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'dotenv-rails'
