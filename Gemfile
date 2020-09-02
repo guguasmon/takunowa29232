@@ -36,6 +36,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 group :development do
@@ -54,6 +55,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rack_session_access'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
