@@ -8,10 +8,10 @@
       <li class="list"><%= link_to 'マッチング', "#", class: "matching" %></li>
       <% if logged_in? %>
         <li class="list"><%= link_to 'ログアウト', logout_path %></li>
+        <li class="list"><%= link_to 'マイページ', "#", class: "my-page" %></li>
       <% else %>
         <li class="list"><a href="/auth/twitter">ログイン</a></li>
       <% end %>
-      <li class="list"><%= link_to 'マイページ', "#", class: "my-page" %></li>
     </ul>
   </div>
 </header>
