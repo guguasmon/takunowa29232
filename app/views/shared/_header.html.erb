@@ -7,10 +7,10 @@
       <% if logged_in? %>
       <li class="list"><%= link_to '日程記入', "#", class: "schedule" %></li>
       <li class="list"><%= link_to 'マッチング', "#", class: "matching" %></li>
-      <li class="list"><%= link_to 'ログアウト', logout_path %></li>
+      <li class="list"><%= link_to 'ログアウト', logout_path, class: "logout" %></li>
       <li class="list"><%= link_to 'マイページ', "#", class: "my-page" %></li>
       <% else %>
-      <li class="list"><%= link_to 'ログイン', "/auth/twitter" %></li>
+      <li class="list"><%= link_to 'ログイン', "/auth/twitter", class: "login" %></li>
       <% end %>
     </ul>
   </div>

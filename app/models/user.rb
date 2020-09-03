@@ -20,7 +20,7 @@ class User < ApplicationRecord
       user.uid = uid
       user.nickname = nickname
       user.name = name
-      user.image = image_url
+      user.image = image
     end
    end
 end
