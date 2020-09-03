@@ -1,43 +1,34 @@
 class SessionsController < ApplicationController
   def create
-    unless request.env['omniauth.auth'][:uid]
-      flash[:danger] = '連携に失敗しました'
-      redirect_to root_url
-    end
-    user_data = request.env['omniauth.auth']
-    user = User.find_by(uid: user_data[:uid])
+    raise "request.env[omniauth.auth]がありません" if auth_params.nil?
+    user = User.find_or_create_from_auth_hash(auth_params)
     if user
-      log_in(user)
-      flash[:success] = 'ログインしました'
-      redirect_to root_url
+      session[:uid] = user.uid
+      binding.pry
+      redirect_to root_path, notice: "ログインしました。"
     else
-      new_user = User.new(
-        uid: user_data[:uid],
-        nickname: user_data[:info][:nickname],
-        name: user_data[:info][:name],
-        image: user_data[:info][:image],
-      )
-      if new_user.save
-        log_in(new_user)
-        flash[:success] = 'ユーザー登録成功'
-      else
-        flash[:danger] = '予期せぬエラーが発生しました'
-      end
-      redirect_to root_url
+      redirect_to root_path, notice: "失敗しました。"
     end
   end
 
   def destroy
     log_out if logged_in?
     flash[:success] = 'ログアウトしました'
-    redirect_to root_url
+    redirect_to root_path
   end
 
+  # callbackに失敗したときに呼ばれるアクション
   def failure
-    redirect_to root_url, alert: "Authentication failed."
+    redirect_to root_path
   end
 
   private
+  # ユーザー情報の入った
+  #request.env['omniauth.auth']はTwitter認証で得た情報を格納するもの
+  def auth_params
+    request.env["omniauth.auth"]
+  end
+
   # 渡されたユーザーでログインする
   def log_in(user)
     session[:uid] = user.uid
