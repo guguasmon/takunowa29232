@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'ログインしました'
       redirect_to root_path
     else
-      flash[:danger] = '失敗しました'
+      flash[:notice] = '失敗しました'
       redirect_to root_path
     end
   end
@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
 
   # callbackに失敗したときに呼ばれるアクション
   def failure
+    flash[:notice] = 'キャンセルしました'
     redirect_to root_path
   end
 
