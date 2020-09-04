@@ -3,17 +3,18 @@ class SessionsController < ApplicationController
     raise "request.env[omniauth.auth]がありません" if auth_params.nil?
     user = User.find_or_create_from_auth_hash(auth_params)
     if user
-      session[:uid] = user.uid
-      binding.pry
-      redirect_to root_path, notice: "ログインしました。"
+      log_in(user)
+      flash[:notice] = 'ログインしました'
+      redirect_to root_path
     else
-      redirect_to root_path, notice: "失敗しました。"
+      flash[:danger] = '失敗しました'
+      redirect_to root_path
     end
   end
 
   def destroy
     log_out if logged_in?
-    flash[:success] = 'ログアウトしました'
+    flash[:notice] = 'ログアウトしました'
     redirect_to root_path
   end
 
@@ -29,26 +30,4 @@ class SessionsController < ApplicationController
     request.env["omniauth.auth"]
   end
 
-  # 渡されたユーザーでログインする
-  def log_in(user)
-    session[:uid] = user.uid
-  end
-
-  # 現在ログイン中のユーザーを返す (いる場合)
-  def current_user
-    if session[:uid]
-      @current_user ||= User.find_by(uid: session[:uid])
-    end
-  end
-
-  # ユーザーがログインしていればtrue、その他ならfalseを返す
-  def logged_in?
-    !current_user.nil?
-  end
-
-  # 現在のユーザーをログアウトする
-  def log_out
-    session.delete(:uid)
-    @current_user = nil
-  end
 end
