@@ -28,7 +28,9 @@ module OmniauthMocks
       }
     })
   end
+
+  def twitter_invalid_mock
+    OmniAuth.config.mock_auth[:twitter] = :invalid_credentails
+  end
 end
 
-# OmniAuthをテストモードに変更
-OmniAuth.config.test_mode = true
