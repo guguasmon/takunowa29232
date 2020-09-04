@@ -8,16 +8,20 @@ RSpec.describe "Users", type: :system do
   end
 
   context 'Twitter認証ができるとき' do 
-    it 'ログインボタンを押してユーザーがTwitter認証を許可した時、ログイン状態となってトップページに移動する' do
+    it 'ログインボタンを押してユーザーがTwitter認証を許可した時' do
       visit root_path
       expect(page).to_not have_content('マイページ') # ログイン前はマイページという表示が無い
       find_link("ログイン", href: "/auth/twitter").click # ログインボタンをクリックしてTwitter認証を行う
-      expect(page).to have_content('マイページ') # リダイレクトされてTOPに戻るとマイページと表示されている
+      expect(page).to have_content('マイページ') # リダイレクトされてTOPに戻るとログインできている
     end
   end
   context 'Twitter認証ができないとき' do
-    it "oauthが渡ってこない場合エラーになる" do
-
+    it "ログインボタンを押してユーザーがTwitter認証をキャンセルした時" do
+      Rails.application.env_config['omniauth.auth'] = twitter_invalid_mock
+      visit root_path
+      expect(page).to_not have_content('マイページ') # ログイン前はマイページという表示が無い
+      find_link("ログイン", href: "/auth/twitter").click # ログインボタンをクリックしてTwitter認証を行う
+      expect(page).to_not have_content('マイページ') # リダイレクトされてTOPに戻るとログインできてない
     end
   end
 end
